@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "email": "qwerty123@gmail.com",
+      "password": "$2a$10$RZxZfRzIuUll1Iyq02Z0eOD0yKkPfAV8kxQ4cU2zt6.dYCqIhPVNe",
+      "name": "Immortal",
+      "password_confirmation": "qweqwe",
+      "id": 3
+    }
+  ],
+  "contacts": [
+    {
+      "name": "Immortal",
+      "email": "qwerty123@gmail.com"
+    },
+    {
+      "name": "Sergei",
+      "email": "Sergei@gmail.com"
+    },
+    {
+      "name": "Ivan",
+      "email": "Ivan@gmail.com"
+    },
+    {
+      "name": "Gergio",
+      "email": "Gergio@gmail.com"
+    }
+  ]
+}

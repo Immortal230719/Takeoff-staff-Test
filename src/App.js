@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// Other
+import { rootStore } from './init/rootStore';
+import { Routes } from './routes';
+import { history } from './init/middlewares';
 
-export default App;
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: ['Ubuntu, Montserrat'].join(','),
+  },
+  palette: {
+    type: 'dark',
+    primary: {
+      main: '#ddd',
+    },
+  },
+});
+
+export const App = () => (
+  <ThemeProvider theme={theme}>
+    <Provider store={rootStore}>
+      <ConnectedRouter history={history}>
+        <Routes />
+      </ConnectedRouter>
+    </Provider>
+  </ThemeProvider>
+);

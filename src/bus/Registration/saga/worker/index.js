@@ -1,0 +1,1 @@
+export { fetchRegistration } from './fetchRegistartion';
