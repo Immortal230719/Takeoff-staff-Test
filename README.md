@@ -9,6 +9,7 @@ based on [Create-React-App][df1]
 3. Material UI
 4. React-router
 5. Axios
+6. [JSON-Server][df2]
 
 ### To run project locally:
 
@@ -34,3 +35,4 @@ yarn start
 ```
 
  [df1]: <https://create-react-app.dev/>
+ [df2]: <https://github.com/typicode/json-server#cli-usage> 

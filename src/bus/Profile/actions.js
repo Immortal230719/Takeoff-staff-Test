@@ -21,6 +21,11 @@ import {
   PROFILE_SEARCH_CONTACT_STOP,
   PROFILE_SEARCH_CONTACT_FILL,
   PROFILE_SEARCH_CONTACT_ASYNC,
+  PROFILE_SET_INITIAL_VALUES,
+  PROFILE_CHANGE_CONTACT_START,
+  PROFILE_CHANGE_CONTACT_STOP,
+  PROFILE_CHANGE_CONTACT_ASYNC,
+  PROFILE_CHANGE_CONTACT_FILL,
 } from './types';
 
 // get contacts
@@ -154,5 +159,38 @@ export function profileAsyncSearch(data) {
   return {
     type: PROFILE_SEARCH_CONTACT_ASYNC,
     payload: data,
+  }
+}
+
+// change contact
+export function profileChangeStart() {
+  return {
+    type: PROFILE_CHANGE_CONTACT_START,
+  }
+}
+export function profileChangeStop() {
+  return {
+    type: PROFILE_CHANGE_CONTACT_STOP,
+  }
+}
+export function profileChangeFill({ data }) {
+  return {
+    type: PROFILE_CHANGE_CONTACT_FILL,
+    payload: data,
+  }
+}
+export function profileAsyncChange(id, data) {
+  return {
+    type: PROFILE_CHANGE_CONTACT_ASYNC,
+    payload: {
+      id,
+      data,
+    },
+  }
+}
+export function profileSetInitialValues(id) {
+  return {
+    type: PROFILE_SET_INITIAL_VALUES,
+    payload: id,
   }
 }

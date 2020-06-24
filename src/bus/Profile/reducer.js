@@ -17,6 +17,10 @@ import {
   PROFILE_SEARCH_CONTACT_START,
   PROFILE_SEARCH_CONTACT_STOP,
   PROFILE_SEARCH_CONTACT_FILL,
+  PROFILE_SET_INITIAL_VALUES,
+  PROFILE_CHANGE_CONTACT_START,
+  PROFILE_CHANGE_CONTACT_STOP,
+  PROFILE_CHANGE_CONTACT_FILL,
 } from './types';
 
 const initialState = {
@@ -24,6 +28,11 @@ const initialState = {
   isFetching: false,
   error: false,
   errorMessage: '',
+  initialValuesInChangeForm: {
+    id: '',
+    name: '',
+    email: '',
+  },
 }
 
 export const profileReducer = (state = initialState, { type, payload, error }) => {
@@ -138,6 +147,37 @@ export const profileReducer = (state = initialState, { type, payload, error }) =
         ...state,
         contacts: [payload],
       }
+
+    // change contact
+    case PROFILE_SET_INITIAL_VALUES: {
+      const currentContact = state.contacts.filter((contact) => contact.id === payload)[0]
+      return {
+        ...state,
+        initialValuesInChangeForm: { ...currentContact },
+      }
+    }
+    case PROFILE_CHANGE_CONTACT_START:
+      return {
+        ...state,
+        isFetching: true,
+      }
+    case PROFILE_CHANGE_CONTACT_STOP:
+      return {
+        ...state,
+        isFetching: false,
+      }
+    case PROFILE_CHANGE_CONTACT_FILL: {
+      return {
+        ...state,
+        contacts: state.contacts.map((contact) => {
+          if (contact.id === payload.id) {
+            return payload
+          }
+          return contact;
+        }),
+      }
+    }
+
     default:
       return state;
   }

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { reset } from 'redux-form';
 import { Link } from 'react-router-dom';
 
+// material-ui
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
@@ -23,7 +24,7 @@ import CreateRoundedIcon from '@material-ui/icons/CreateRounded';
 import {
   CreateContactForm, CustomBackdrop, BackBtn, SearchContactForm,
 } from 'components';
-// import { book } from 'routes/book';
+import { book } from 'routes/book';
 import {
   profileAsyncContacts,
   profileAsyncDelete,
@@ -31,6 +32,8 @@ import {
   profileDeleteErrorReset,
   profileCreateErrorReset,
   profileAsyncSearch,
+  profileSetInitialValues,
+  profileAsyncChange,
 } from './actions';
 import { getProfile, isLogged } from './selectors';
 
@@ -50,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     maxWidth: 600,
-    padding: '100px 0',
+    padding: '50px 0',
   },
   listItem: {
     color: '#fcfcfc',
@@ -59,40 +62,51 @@ const useStyles = makeStyles((theme) => ({
 
 export const Profile = ({ history }) => {
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [showChangeForm, setShowChangeForm] = useState(false);
   const dispatch = useDispatch();
   const classes = useStyles();
   const isLoggedIn = useSelector(isLogged)
   const {
-    contacts, isFetching, error, errorMessage,
+    contacts, isFetching, error, errorMessage, initialValuesInChangeForm,
   } = useSelector(getProfile)
 
   useEffect(() => {
-    // if (!isLoggedIn) {
-    //   history.push(book.root);
-    // }
+    if (!isLoggedIn) {
+      history.push(book.root);
+    }
     dispatch(profileAsyncContacts())
   }, [dispatch, isLoggedIn, history]);
 
+  // submit handlers
   const submitCreateHandler = (values) => {
     setShowCreateForm(false)
     dispatch(profileAsyncCreate(values))
     dispatch(reset('createContact'));
   };
-
-  const searchSubmitHandler = (values) => {
+  const subminSearchHandler = (values) => {
     dispatch(profileAsyncSearch(values))
     dispatch(reset('searchContact'));
   }
-
+  const submitChangeHandler = (values) => {
+    dispatch(profileAsyncChange(initialValuesInChangeForm.id, values))
+    dispatch(reset('createContact'));
+    setShowChangeForm(!showChangeForm);
+  }
   const deleteHandler = (e) => {
     const currentID = e.currentTarget.getAttribute('data-id')
     dispatch(profileAsyncDelete(currentID))
   }
-
-  const setShowHandler = () => {
+  // set components to be visible
+  const setShowChangeHandler = (e) => {
+    const idOfChangedContact = e.currentTarget.getAttribute('data-id');
+    dispatch(profileSetInitialValues(idOfChangedContact));
+    setShowChangeForm(true);
+  }
+  const setShowCreateHandler = () => {
     setShowCreateForm(!showCreateForm)
   }
 
+  // reset error
   const resetErrorHandler = () => {
     dispatch(profileDeleteErrorReset())
     dispatch(profileCreateErrorReset())
@@ -132,7 +146,7 @@ export const Profile = ({ history }) => {
             >
               Search
             </Typography>
-            <SearchContactForm onSubmit={searchSubmitHandler} />
+            <SearchContactForm onSubmit={subminSearchHandler} />
             <List className={classes.root}>
               {Array.isArray(contacts)
               && contacts.map(({ id, name, email }) => (
@@ -146,7 +160,11 @@ export const Profile = ({ history }) => {
                   <ListItemText id={id} primary={name} />
                   <ListItemText id={id} primary={email} />
                   <ListItemSecondaryAction edge="end">
-                    <IconButton aria-label="comments">
+                    <IconButton
+                      data-id={id}
+                      aria-label="change"
+                      onClick={setShowChangeHandler}
+                    >
                       <Tooltip title="Change">
                         <CreateRoundedIcon />
                       </Tooltip>
@@ -167,13 +185,12 @@ export const Profile = ({ history }) => {
                 className={classes.listItem}
                 key="last"
                 role={undefined}
-                // dense
                 button
                 alignItems="flex-start"
               >
                 <ListItemText id="last" primary="OPTIONS" />
                 <ListItemSecondaryAction edge="end">
-                  <IconButton onClick={setShowHandler} aria-label="comments">
+                  <IconButton onClick={setShowCreateHandler} aria-label="comments">
                     <Tooltip title="Create new contact">
                       <BorderColorRoundedIcon />
                     </Tooltip>
@@ -194,6 +211,28 @@ export const Profile = ({ history }) => {
                 Create contact
               </Typography>
               <CreateContactForm onSubmit={submitCreateHandler} />
+            </>
+            )}
+            {showChangeForm
+            && (
+            <>
+              <Typography
+                color="primary"
+                align="center"
+                variant="h4"
+                component="h3"
+                gutterBottom
+              >
+                Change contact
+              </Typography>
+              <CreateContactForm
+                onSubmit={submitChangeHandler}
+                enableReinitialize
+                initialValues={{
+                  name: initialValuesInChangeForm.name,
+                  email: initialValuesInChangeForm.email,
+                }}
+              />
             </>
             )}
           </>
