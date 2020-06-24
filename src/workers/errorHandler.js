@@ -11,6 +11,9 @@ export function* errorHandler(error, errorAction) {
     case 400:
       yield put(errorAction(data));
       break;
+    case 401:
+      yield put(errorAction(data));
+      break;
     default:
       throw new Error(data);
   }

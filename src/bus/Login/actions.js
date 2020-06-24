@@ -19,9 +19,10 @@ export function loginFetchingStop() {
   }
 }
 
-export function loginFill() {
+export function loginFill({ data }) {
   return {
     type: LOGIN_FILL,
+    payload: data,
   }
 }
 

@@ -11,5 +11,16 @@ export const api = {
 
   contacts: {
     fetch: () => axios.get('/664/contacts').then((res) => res),
+    delete: (id, token) => axios.delete(`/664/contacts/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => res),
+    create: (data, token) => axios.post('/664/contacts', data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => res),
+    search: ({ name }) => axios.get(`/contacts?name=${name}`).then((res) => res),
   },
 };

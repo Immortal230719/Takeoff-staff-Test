@@ -14,7 +14,6 @@ import {
 export function* fetchContacts() {
   const options = {
     fetcher: api.contacts.fetch,
-    fetcherParam: {},
     start: profileFetchingStart,
     stop: profileFetchingStop,
     fill: profileFillContacts,

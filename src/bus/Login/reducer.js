@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 import {
   LOGIN_FETCH_START,
   LOGIN_FETCH_STOP,
@@ -7,6 +9,7 @@ import {
 } from './types';
 
 const initialState = {
+  isLogged: false,
   isFetching: false,
   error: false,
   errorMessage: '',
@@ -20,10 +23,12 @@ export const loginReducer = (state = initialState, { type, payload, error }) => 
         isFetching: true,
       }
     case LOGIN_FILL:
+      Cookies.set('token', payload.accessToken);
       return {
         ...state,
         isFetching: false,
         error: false,
+        isLogged: true,
       }
     case LOGIN_FETCH_STOP:
       return {

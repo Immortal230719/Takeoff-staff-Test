@@ -7,7 +7,6 @@ export function* makeRequestWithSpinner(options) {
   const {
     fetcher,
     data,
-    fetcherParam = {},
     start,
     stop,
     fill,
@@ -18,8 +17,7 @@ export function* makeRequestWithSpinner(options) {
 
   try {
     yield put(start());
-
-    const result = yield call(fetcher, data, fetcherParam);
+    const result = yield call(fetcher, data);
     yield put(fill(result));
     if (path) {
       history.push(path);

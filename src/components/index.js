@@ -1,5 +1,7 @@
 export { CustomBackdrop } from './Backdrop';
-export { LoginForm, SignUpForm } from './Forms';
+export {
+  LoginForm, SignUpForm, CreateContactForm, SearchContactForm,
+} from './Forms';
 export { Layout } from './Layout';
 export { renderTextField } from './InputText';
 export {
