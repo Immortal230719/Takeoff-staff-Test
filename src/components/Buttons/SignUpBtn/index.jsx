@@ -17,6 +17,7 @@ export const SignUpBtn = ({ children, onClick }) => {
 
   return (
     <Button
+      type="submit"
       variant="contained"
       color="inherit"
       size="large"

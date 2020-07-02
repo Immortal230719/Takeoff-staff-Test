@@ -6,6 +6,13 @@
       "name": "Immortal",
       "password_confirmation": "qweqwe",
       "id": 3
+    },
+    {
+      "email": "qwertqwey123@gmail.com",
+      "password": "$2a$10$bw9/ni.n669wAiv1gTe4pe/LpLjH7L9UgNaDMojrqTdqHUPr1k8.G",
+      "name": "bnm",
+      "password_confirmation": "asdasd",
+      "id": 4
     }
   ],
   "contacts": [
@@ -40,12 +47,7 @@
       "id": "QD7vOcG"
     },
     {
-      "name": "bnmqweasdasd",
-      "email": "asdasd@nan.ru",
-      "id": "kDskTIy"
-    },
-    {
-      "name": "Immortalqwe",
+      "name": "Immortalqweqweqwe",
       "email": "qweqweqwe@mail.ru",
       "id": "7jra0Nu"
     },
@@ -53,6 +55,11 @@
       "name": "Hrom123qwe",
       "email": "asdasd@mail.ru",
       "id": "UbxJjgm"
+    },
+    {
+      "name": "fghjfhjqweqwe",
+      "email": "qweqweqwe@mail.ru",
+      "id": "IGsVzUL"
     }
   ]
 }

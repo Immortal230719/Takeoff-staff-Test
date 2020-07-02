@@ -8,7 +8,7 @@ import {
   LOGIN_RESET_ERROR,
 } from './types';
 
-const initialState = {
+export const initialState = {
   isLogged: false,
   isFetching: false,
   error: false,
@@ -26,7 +26,6 @@ export const loginReducer = (state = initialState, { type, payload, error }) => 
       Cookies.set('token', payload.accessToken);
       return {
         ...state,
-        isFetching: false,
         error: false,
         isLogged: true,
       }
@@ -38,14 +37,12 @@ export const loginReducer = (state = initialState, { type, payload, error }) => 
     case LOGIN_SET_FETCHING_ERROR:
       return {
         ...state,
-        isFetching: false,
         error,
         errorMessage: payload,
       }
     case LOGIN_RESET_ERROR:
       return {
         ...state,
-        isFetching: false,
         error: false,
         errorMessage: '',
       }

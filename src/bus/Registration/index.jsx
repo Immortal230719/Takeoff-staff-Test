@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { reset } from 'redux-form';
 import { makeStyles } from '@material-ui/core/styles';
-import { push } from 'connected-react-router';
 
 import { SignUpForm, CustomBackdrop, BackBtn } from 'components';
 import { book } from 'routes/book';
@@ -37,7 +37,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Registration = () => {
+export const Registration = ({ history }) => {
   const styles = useStyles();
   const dispatch = useDispatch();
   const { isFetching, error, errorMessage } = useSelector(getRegister)
@@ -45,7 +45,7 @@ export const Registration = () => {
   const submitRegistrationHandler = (values) => {
     dispatch(registrationAsync(values));
     dispatch(reset('signUp'));
-    dispatch(push(book.login));
+    history.push(book.login);
   };
 
   const resetErrorHandler = () => {
@@ -91,3 +91,13 @@ export const Registration = () => {
     </>
   );
 };
+
+Registration.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
+}
+
+Registration.defaultProps = {
+  history: {},
+}

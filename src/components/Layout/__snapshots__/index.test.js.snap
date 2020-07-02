@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout should render correctly 1`] = `
+<WithStyles(ForwardRef(Container))
+  className="center"
+  disabled={true}
+  maxWidth="lg"
+  style={
+    Object {
+      "position": "relative",
+      "zIndex": 1,
+    }
+  }
+>
+  Layout
+</WithStyles(ForwardRef(Container))>
+`;

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main should render correctly 1`] = `
+<Styled(MuiBox)
+  className="makeStyles-root-1"
+>
+  <Link
+    className="makeStyles-links-2"
+    to="/login"
+  >
+    <LoginBtn
+      onClick={[Function]}
+    >
+      Login
+    </LoginBtn>
+  </Link>
+  <Link
+    className="makeStyles-links-2"
+    to="/registration"
+  >
+    <SignUpBtn
+      onClick={[Function]}
+    >
+      Sign Up
+    </SignUpBtn>
+  </Link>
+</Styled(MuiBox)>
+`;

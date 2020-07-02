@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUpBtn should render correctly 1`] = `
+<WithStyles(ForwardRef(Button))
+  className="makeStyles-btnUp-1"
+  color="inherit"
+  endIcon={
+    <UNDEFINED
+      color="inherit"
+      fontSize="large"
+    />
+  }
+  onClick={[MockFunction]}
+  size="large"
+  type="submit"
+  variant="contained"
+>
+  SignUp
+</WithStyles(ForwardRef(Button))>
+`;

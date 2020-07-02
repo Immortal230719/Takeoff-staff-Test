@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResetBtn should render correctly 1`] = `
+<WithStyles(ForwardRef(Button))
+  className="center"
+  color="inherit"
+  disabled={true}
+  endIcon={
+    <UNDEFINED
+      color="inherit"
+      fontSize="large"
+    />
+  }
+  size="large"
+  type="reset"
+  variant="contained"
+>
+  Reset
+</WithStyles(ForwardRef(Button))>
+`;

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Backdrop should render correctly 1`] = `
+<WithStyles(ForwardRef(Backdrop))
+  className="makeStyles-backdrop-1"
+  open={true}
+>
+  <WithStyles(ForwardRef(CircularProgress))
+    color="inherit"
+  />
+</WithStyles(ForwardRef(Backdrop))>
+`;
+
+exports[`Backdrop shouldn't render 1`] = `
+<WithStyles(ForwardRef(Backdrop))
+  className="makeStyles-backdrop-1"
+  open={false}
+>
+  <WithStyles(ForwardRef(CircularProgress))
+    color="inherit"
+  />
+</WithStyles(ForwardRef(Backdrop))>
+`;

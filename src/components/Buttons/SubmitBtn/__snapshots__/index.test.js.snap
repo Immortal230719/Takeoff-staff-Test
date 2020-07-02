@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SubmitBtn should render correctly 1`] = `
+<WithStyles(ForwardRef(Button))
+  className="makeStyles-btnSubmit-1"
+  color="inherit"
+  endIcon={
+    <UNDEFINED
+      color="inherit"
+      fontSize="large"
+    />
+  }
+  size="large"
+  type="submit"
+  variant="contained"
+>
+  Submit
+</WithStyles(ForwardRef(Button))>
+`;
